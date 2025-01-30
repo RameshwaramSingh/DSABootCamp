@@ -1,0 +1,81 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[] ={2,5,7,8,12,9};
+        int n = arr.length;
+        // int ans = bsUsingLoop(arr,9);
+        // System.out.println("target found at index "+ans);
+        leftRotate(arr,n,3);
+    }
+    static int binarySearch(int arr[], int s, int e, int t){
+        if(s>e){
+            return -1;
+        }
+            int mid = s+(e-s)/2;
+            if(t==arr[mid]){
+                return mid;
+            }
+            if(arr[mid]>t){
+               return binarySearch(arr,s,mid-1,t);
+            }
+               return binarySearch(arr,mid+1,e,t);
+    }
+    
+    static int bsUsingLoop(int arr[],int target){
+        int start = 0;
+        int end = arr.length-1;
+        while(start<end){
+            int mid = start+(end-start)/2;
+            if(arr[mid]==target){
+                return mid;
+            }
+            if(arr[mid]>target){
+                end = mid-1;
+            }
+            if(arr[mid]<target){
+                start = mid+1;
+            }
+        }
+        return -1;
+    }
+    
+    static void sorted(int arr[]){
+        for(int i =1; i<arr.length;i++){
+            if(arr[i-1]>arr[i]){
+                System.out.println("Array is not sorted");
+                break;
+            }
+            if(i==arr.length-1){
+                System.out.println("Array is  sorted");
+            }
+        }
+        
+    }
+    
+    static void reverseArray(int arr[]){
+        int left =0;
+        int right = arr.length-1;
+        while(left<right){
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+    
+    static void leftRotate(int arr[], int n, int d){
+        int temp[] = new int [d];
+        for(int i=0; i<d;i++){
+            temp[i] = arr[i];
+        }
+        for(int i =d; i<n;i++){
+            arr[i-d] = arr[i];
+        }
+        for(int i =0;i<d;i++){
+            arr[n-d+i] = temp[i];
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+}
