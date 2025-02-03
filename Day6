@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        /*System.out.println("Enter the size of the array");
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        System.out.println("Enter0 the element of the array");
+        for(int i =0; i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }*/
+        int arr[] = {1,2,3};
+        int arr2[] = {2,3,4};
+        intersection(arr,arr2);
+    }
+    static void sortOneAndTwo(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            for(int j =1;j<arr.length;j++){
+                if(arr[j-1]>arr[j]){
+                    int temp = arr[j-1];
+                    arr[j-1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+    static void duskAndFlag(int arr[]){
+        int low = 0;
+        int high = arr.length-1;
+        int mid =0;
+        int i =0;
+        while(mid<=high){
+            if(arr[i]==0){
+                int temp = arr[mid];
+                arr[mid] = arr[low];
+                arr[low] = temp;
+                low++;
+                mid++;
+            }
+            if(arr[i] == 1){
+                mid++;
+            }
+            if(arr[i]==2){
+                int temp =arr[high];
+                arr[high] = arr[mid];
+                arr[mid] = temp;
+                high--;
+                mid++;
+            }
+            i++;
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+    static void union(int arr[],int arr2[]){
+            int j =0;
+            ArrayList<Integer> ans = new ArrayList<Integer>();
+            for(int i =0;i<arr.length;i++){
+                if(arr[i]<arr2[j]){
+                    ans.add(arr[i]);
+                    ans.add(arr2[j]);
+                }
+                if(arr[i]==arr2[j]){
+                    
+                }
+                if(arr[i]>arr2[j]){
+                    ans.add(arr2[j]);
+                    ans.add(arr[i]);
+                }
+                j++;
+            }
+            System.out.println(ans);
+        }
+        static void intersection(int arr[],int arr2[]){
+            for(int i =0; i<arr.length;i++){
+                for(int j =0; j<arr2.length;j++){
+                    if(arr[i]==arr2[j]){
+                        System.out.print(arr[i]+" ");
+                    }
+                }
+            }
+        }
+}
