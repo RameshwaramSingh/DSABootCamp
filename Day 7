@@ -1,0 +1,78 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        /*System.out.println("Enter the number");
+        int n = sc.nextInt();
+         System.out.println("Enter the kth bit");
+         int k = sc.nextInt();*/
+         int arr[] = {4,2,4,10,2,3,3,12};
+         doubleOddOccuringNumber(arr);
+        /*if(ans>0){
+            System.out.println(ans+" is odd occuring number in the array");
+        }
+        else{
+            System.out.println("There is no odd occuring number in the array");
+        }
+        */
+    }
+    static void kthBitIsSet(int n,int k){
+        int x = (1<<k-1);
+        if((x&n) != 0){
+            System.out.println("kth Bit is set");
+        }
+        else{
+            System.out.println("kth Bit is not set");
+        }
+    }
+    
+    static void countSetBit(int n){
+        int res =0;
+        while(n>0){
+            n = (n&(n-1));
+            res = res+1;
+        }
+        System.out.println("Total Set Bits Are "+res);
+    }
+    
+    static void powerOfTwo(int n){
+        int t =n;
+        int res =0;
+        while(n>0){
+            n = (n&(n-1));
+            res = res+1;
+        }
+        if(res==1){
+            System.out.println(t+" is a power of two");
+        }else
+        {
+        System.out.println(t+" is not a power of two");
+        }
+    }
+    
+    static int findOddOccuringNumber(int arr[]){
+        int res = arr[0];
+        for(int i =1;i<arr.length;i++){
+            res = res^arr[i];
+        }
+        return res;
+    }
+    
+   static void doubleOddOccuringNumber(int arr[]){
+       int x = arr[0];
+       for(int i =1;i<arr.length;i++){
+           x = x^arr[i];
+       }
+       int k = (x&~(x-1)); // this is used to find the right most of the digit
+       int res1 = 0, res2 =0;
+       for(int i =0; i<arr.length;i++){
+           if((arr[i]&k)!=0){
+               res1 = res1^arr[i];
+           }
+           else{
+               res2 = res2^arr[i];
+           }
+       }
+       System.out.println("Odd occuring elements are "+ res1+" and "+res2);
+   }
+}
