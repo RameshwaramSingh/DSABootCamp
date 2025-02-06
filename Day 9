@@ -1,0 +1,76 @@
+public class Main{
+    public static void main(String[] args) {
+        int arr[][] = {
+                {1,2,3,4},
+                {5,6,7,8},
+                {9,10,11,12},
+                {13,14,15,16}
+        };
+        print(arr);
+    }
+    static void print(int arr[][]){
+        int row = arr.length;
+        int col = arr[0].length;
+        for(int i =0; i<row;i++){
+            for(int j =0;j<col;j++){
+                if(i==0 || i==row-1||j==0|| j==col-1){
+                    System.out.print(arr[i][j]+" ");
+                }
+                else {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+// transpose of matrix
+static void transpose(int arr[][],int res[][]){
+        int rows = arr.length;
+        int col = arr[0].length;
+        for(int i =0;i<rows;i++){
+            for(int j =0;j<col;j++){
+                res[j][i] = arr[i][j];
+            }
+        }
+        for(int i =0;i<arr.length;i++){
+            for(int j =0;j<arr.length;j++){
+                System.out.print(res[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+
+static void rotate90(int[][] mat) {
+        int n = mat.length;
+        int[][] res = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                res[j][n - i - 1] = mat[i][j];
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            System.arraycopy(res[i], 0, mat[i], 0, n);
+        }
+    }
+
+//Print in Snake pattern
+
+static void snakeMatrix(int arr[][]){
+        int row = arr.length;
+        int col = arr[0].length;
+        for(int i =0;i<arr.length;i++){
+                if(i%2==0){
+                    for(int j=0;j<arr.length;j++){
+                        System.out.print(arr[i][j]+" ");
+                    }
+                }
+            else{
+                for(int j = col-1;j>=0;j--){
+                    System.out.print(arr[i][j]+" ");
+                }
+                }
+            System.out.println();
+        }
+    }
+}
