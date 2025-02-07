@@ -1,0 +1,77 @@
+#include <stdio.h>
+void pattern1(int);
+void maximumDifference(int[]);
+int main() {
+    int arr[]={1,-2,3,5,-4,6,3};
+    maximumDifference(arr);
+    return 0;
+}
+void pattern1(int n){
+    for(int i=0;i<n;i++){
+        for(int j=0;j<i+1;j++){
+            printf("%d",n-j);
+        }
+        for(int j=0;j<2*(n-i-1);j++){
+            printf("%d",n-i);
+        }
+        for(int j=1;j<i+1;j++){
+            printf("%d",j+n-i);
+        }
+        printf("\n");
+    }
+    
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<n-i-1;j++){
+            printf("%d",n-j);
+        }
+        for(int j=0;j<2*i+1;j++){
+            printf("%d",i+2);
+        }
+        for(int j=0;j<n-i-1;j++){
+            printf("%d",i+j+2);
+        }
+        
+        printf("\n");
+    }
+}
+void maximumDifference(int arr[]){
+    int min=0;
+    int max=0;
+    int dif=0;
+   for(int i=0;i<7;i++){
+       for(int j=0;j<7;j++){
+           if(arr[i]>arr[j]){
+              min= arr[j];
+           }
+           if(arr[i]<arr[j]){
+               max=arr[j];
+           }
+       }
+   }
+   dif=max-min;
+    printf("min= %d \n",min);
+     printf("max= %d \n",max);
+   printf("dif= %d ",dif);
+    }
+
+
+//java code for maximimSubArraysum using slididng window
+
+static int findSum(int arr[], int k){
+        int currSum = 0;
+        int maxSum = 0;
+        // first find the sum of first k consecutive terms
+        for(int i = 0; i<k; i++){
+            currSum = currSum +arr[i];
+            maxSum = currSum;
+        }
+        // now we add the next element and subtract the previous element
+
+        for(int i =k; i<arr.length;i++){
+            currSum = currSum+arr[i]-arr[i-k];
+            if(currSum>maxSum){
+                maxSum = currSum;
+            }
+        }
+        return maxSum;
+    }
